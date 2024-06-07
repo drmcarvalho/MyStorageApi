@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using MyStorageApplication.Database;
 using MyStorageApplication.StorageManager.Domain;
+using MyStorageApplication.ProductManager.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 //Repositories and database
 builder.Services.AddContainerDatabase();
 builder.Services.AddContainerServiceStorageManagerDomain();
+builder.Services.AddContainerProductServiceDomain();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

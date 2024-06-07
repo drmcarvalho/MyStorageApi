@@ -3,7 +3,7 @@ using MyStorageApplication.ProductManager.Domain.Dtos;
 
 namespace MyStorageApplication.ProductManager.Domain.Services.Interfaces
 {
-    public interface IProductServiceDomain
+    public interface IProductManagerServiceDomain
     {
         Task<ProductDto?> GetByIdAsync(int id);
         Task<IEnumerable<ProductDto>> GetAllAsync();

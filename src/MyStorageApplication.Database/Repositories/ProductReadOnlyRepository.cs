@@ -15,11 +15,11 @@ namespace MyStorageApplication.Database.Repositories
 
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
             => await _session
-                .Connection.QueryAsync<ProductDto>(@"SELECT ProductId, ProductName, StockBalance, Price FROM Products");
+                .Connection.QueryAsync<ProductDto>(@"SELECT ProductId, Name AS ""ProductName"", StockBalance, Price FROM Products");
 
         public async Task<ProductDto?> GetByIdAsync(int id)
         => await _session
-                .Connection.QueryFirstOrDefaultAsync<ProductDto>(@"SELECT ProductId, ProductName, StockBalance, Price FROM Products WHERE ProductId = @ProductId", new { ProductId = id });
+                .Connection.QueryFirstOrDefaultAsync<ProductDto>(@"SELECT ProductId, Name AS ""ProductName"", StockBalance, Price FROM Products WHERE ProductId = @ProductId", new { ProductId = id });
 
         public Task<string> GetProductNameAsync(int productId)
         {
@@ -28,6 +28,6 @@ namespace MyStorageApplication.Database.Repositories
 
         public async Task<IEnumerable<ProductDto>> QueryAsync(string q)
             => await _session
-                .Connection.QueryAsync<ProductDto>(@"SELECT ProductId, ProductName, StockBalance, Price FROM Products WHERE Name LIKE @WhereLike", new { WhereLike = q });
+                .Connection.QueryAsync<ProductDto>(@"SELECT ProductId, Name AS ""ProductName"", StockBalance, Price FROM Products WHERE Name LIKE @WhereLike", new { WhereLike = q });
     }
 }

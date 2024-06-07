@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MyStorageApplication.ProductManager.Domain.Services;
+using MyStorageApplication.ProductManager.Domain.Services.Interfaces;
 
 namespace MyStorageApplication.ProductManager.Domain
 {
@@ -6,7 +8,7 @@ namespace MyStorageApplication.ProductManager.Domain
     {
         public static void AddContainerProductServiceDomain(this IServiceCollection services)
         {
-
+            services.AddTransient<IProductManagerServiceDomain, ProductManagerServiceDomain>();
         }
     }
 }
