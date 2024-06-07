@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vO0/SV4V365jzV02WNc2FUtEOa3tYUFWootqeQwcFak=",
+  "Source": "MyStorageApplication.Api",
+  "BasePath": "_content/MyStorageApplication.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

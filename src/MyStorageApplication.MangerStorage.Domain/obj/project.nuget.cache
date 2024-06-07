@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "9CHGHh6wrfDiq5nRvXtYhmnsg+4k4AmTEE5hBbfrwHNngeOKm9eh3QRAxH9BZwGUXP90SHyhn0BGheDBNXv6ow==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.MangerStorage.Domain\\MyStorageApplication.StorageManager.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\dener\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
+    "C:\\Users\\dener\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
+    "C:\\Users\\dener\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\dener\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\dener\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\dener\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.118\\stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
+    "C:\\Users\\dener\\.nuget\\packages\\system.data.sqlite.core\\1.0.118\\system.data.sqlite.core.1.0.118.nupkg.sha512"
+  ],
+  "logs": []
+}

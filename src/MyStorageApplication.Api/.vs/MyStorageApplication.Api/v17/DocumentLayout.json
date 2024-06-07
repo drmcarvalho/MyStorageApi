@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{018BCDEF-4E14-4DAD-AE84-FDF7CB335EB9}|..\\MyStorageApplication.Database\\MyStorageApplication.Database.csproj|c:\\users\\dener\\desktop\\testezdzcode\\fontes\\mystorageapi\\src\\mystorageapplication.database\\repositories\\movementswriteonlyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{018BCDEF-4E14-4DAD-AE84-FDF7CB335EB9}|..\\MyStorageApplication.Database\\MyStorageApplication.Database.csproj|c:\\users\\dener\\desktop\\testezdzcode\\fontes\\mystorageapi\\src\\mystorageapplication.database\\repositories\\productwriteonlyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A343C09F-B447-4876-A5C2-AE786E4CA624}|..\\MyStorageApplication.MangerStorage.Domain\\MyStorageApplication.StorageManager.Domain.csproj|c:\\users\\dener\\desktop\\testezdzcode\\fontes\\mystorageapi\\src\\mystorageapplication.mangerstorage.domain\\services\\storagemanagerservicedomain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{018BCDEF-4E14-4DAD-AE84-FDF7CB335EB9}|..\\MyStorageApplication.Database\\MyStorageApplication.Database.csproj|c:\\users\\dener\\desktop\\testezdzcode\\fontes\\mystorageapi\\src\\mystorageapplication.database\\repositories\\productreadonlyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 580,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MovementsWriteOnlyRepository.cs",
+              "DocumentMoniker": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Database\\Repositories\\MovementsWriteOnlyRepository.cs",
+              "RelativeDocumentMoniker": "..\\MyStorageApplication.Database\\Repositories\\MovementsWriteOnlyRepository.cs",
+              "ToolTip": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Database\\Repositories\\MovementsWriteOnlyRepository.cs",
+              "RelativeToolTip": "..\\MyStorageApplication.Database\\Repositories\\MovementsWriteOnlyRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T02:16:02.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductWriteOnlyRepository.cs",
+              "DocumentMoniker": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Database\\Repositories\\ProductWriteOnlyRepository.cs",
+              "RelativeDocumentMoniker": "..\\MyStorageApplication.Database\\Repositories\\ProductWriteOnlyRepository.cs",
+              "ToolTip": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Database\\Repositories\\ProductWriteOnlyRepository.cs",
+              "RelativeToolTip": "..\\MyStorageApplication.Database\\Repositories\\ProductWriteOnlyRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T02:15:50.436Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductReadOnlyRepository.cs",
+              "DocumentMoniker": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Database\\Repositories\\ProductReadOnlyRepository.cs",
+              "RelativeDocumentMoniker": "..\\MyStorageApplication.Database\\Repositories\\ProductReadOnlyRepository.cs",
+              "ToolTip": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.Database\\Repositories\\ProductReadOnlyRepository.cs",
+              "RelativeToolTip": "..\\MyStorageApplication.Database\\Repositories\\ProductReadOnlyRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T02:10:05.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StorageManagerServiceDomain.cs",
+              "DocumentMoniker": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.MangerStorage.Domain\\Services\\StorageManagerServiceDomain.cs",
+              "RelativeDocumentMoniker": "..\\MyStorageApplication.MangerStorage.Domain\\Services\\StorageManagerServiceDomain.cs",
+              "ToolTip": "C:\\Users\\dener\\Desktop\\TesteZDZCode\\Fontes\\MyStorageApi\\src\\MyStorageApplication.MangerStorage.Domain\\Services\\StorageManagerServiceDomain.cs",
+              "RelativeToolTip": "..\\MyStorageApplication.MangerStorage.Domain\\Services\\StorageManagerServiceDomain.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAwwH8AAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-07T02:08:35.995Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

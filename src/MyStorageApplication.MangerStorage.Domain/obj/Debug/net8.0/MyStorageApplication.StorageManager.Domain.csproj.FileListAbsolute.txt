@@ -1,0 +1,15 @@
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\bin\Debug\net8.0\MyStorageApplication.StorageManager.Domain.deps.json
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\bin\Debug\net8.0\MyStorageApplication.StorageManager.Domain.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\bin\Debug\net8.0\MyStorageApplication.StorageManager.Domain.pdb
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\bin\Debug\net8.0\MyStorageApplication.Database.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\bin\Debug\net8.0\MyStorageApplication.Database.pdb
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.csproj.AssemblyReference.cache
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.AssemblyInfoInputs.cache
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.AssemblyInfo.cs
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.csproj.CoreCompileInputs.cache
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorag.6CA8E9C5.Up2Date
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\refint\MyStorageApplication.StorageManager.Domain.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\MyStorageApplication.StorageManager.Domain.pdb
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.MangerStorage.Domain\obj\Debug\net8.0\ref\MyStorageApplication.StorageManager.Domain.dll

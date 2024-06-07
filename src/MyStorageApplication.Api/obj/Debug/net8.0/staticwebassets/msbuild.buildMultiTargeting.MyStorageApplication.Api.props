@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MyStorageApplication.Api.props" />
+</Project>

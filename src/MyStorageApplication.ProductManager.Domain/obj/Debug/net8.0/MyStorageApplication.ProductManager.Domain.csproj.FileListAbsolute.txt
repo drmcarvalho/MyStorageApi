@@ -1,0 +1,12 @@
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\bin\Debug\net8.0\MyStorageApplication.ProductManager.Domain.deps.json
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\bin\Debug\net8.0\MyStorageApplication.ProductManager.Domain.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\bin\Debug\net8.0\MyStorageApplication.ProductManager.Domain.pdb
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.csproj.AssemblyReference.cache
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.AssemblyInfoInputs.cache
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.AssemblyInfo.cs
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.csproj.CoreCompileInputs.cache
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\refint\MyStorageApplication.ProductManager.Domain.dll
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\MyStorageApplication.ProductManager.Domain.pdb
+C:\Users\dener\Desktop\TesteZDZCode\Fontes\MyStorageApi\src\MyStorageApplication.ProductManager.Domain\obj\Debug\net8.0\ref\MyStorageApplication.ProductManager.Domain.dll
