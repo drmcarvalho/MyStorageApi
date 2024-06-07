@@ -123,7 +123,7 @@ namespace MyStorageApplication.StorageManager.Domain.Services
 
                 var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovementInStorageDto.Amount);                
 
-                await _productWriteOnlyRepository.UpdateStokBalanceAsync(stockBalanceCalculated);
+                await _productWriteOnlyRepository.UpdateStokBalanceAsync(stockBalanceCalculated, productDto.ProductId);
 
                 await _movementsWriteOnlyRepository.InsertAsync(registerNewMovementation);
             }
