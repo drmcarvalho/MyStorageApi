@@ -6,13 +6,12 @@
 
         public int ProductId { get; private set; }
         public string Name { get; private set; } = string.Empty;
-        public int StockBalance { get; private set; }
+        public int StockBalance { get; private set; } = 0;
         public decimal Price { get; private set; }
 
-        public Product(string name, int stockBalance, decimal price)
+        public Product(string name, decimal price)
         {
-            Name = name;
-            StockBalance = stockBalance;
+            Name = name;            
             Price = price;
         }
 

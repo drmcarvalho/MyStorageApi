@@ -21,7 +21,7 @@ namespace MyStorageApplication.ProductManager.Domain.Services
                 return ValidationResult;
             }
 
-            await _productWriteOnlyRepository.InsertAsync(new Product(createProductDto.Name, createProductDto.StockBalance, createProductDto.Price));
+            await _productWriteOnlyRepository.InsertAsync(new Product(createProductDto.Name,  createProductDto.Price));
 
             return ValidationResult;
         }
