@@ -18,7 +18,7 @@ Apos ter clonado basta abrir o projeto no Visual Studio, em seguinda vamos confi
 Baixe o arquivo sqlite [aqui]() ou se preferir execute [este script SQL](https://gist.github.com/drmcarvalho/1abd110ec0552bf394ffa4773357cfc2) para criar o banco.
 
 No Visual Studio no projeto `MyStorageApplication.Api` temos o arquivo appsettings.Development.json, é dentro dele que esta definido o caminho do nosso arquivo de banco de dados, só precisamos colocar o arquivo de banco de dados do sqlite baixado ou criado no path que esta no appsettings.Development.json, veja abaixo o exemplo da ConnectionStrings:
-```
+```json
 {
   "Logging": {
     "LogLevel": {
