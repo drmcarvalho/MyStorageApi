@@ -2,7 +2,7 @@
 
 Aplicação API para gerencimaneto de estoque e cadastro de produtos.
 
-# Preparando o ambiente
+# Preparando o ambiente de desenvolvimento
 
 ## Requisitos
 - .NET 8
@@ -13,11 +13,11 @@ Primeiro vamos clonar o repositorio:
 git clone git@github.com:drmcarvalho/MyStorageApi.git
 ```
 
-Apos ter clonado basta abrir o projeto no Visual Studio, em seguinda vamos configurar o banco de dados que é um arquivo sqlite `database.sqlite` que vai ser usado pela aplicação.
+Após ter clonado basta abrir o projeto no Visual Studio, em seguida vamos configurar o banco de dados que é um arquivo sqlite `database.sqlite` que vai ser usado pela aplicação.
 
 Baixe o arquivo sqlite [aqui]() ou se preferir execute [este script SQL](https://gist.github.com/drmcarvalho/1abd110ec0552bf394ffa4773357cfc2) para criar o banco.
 
-No Visual Studio no projeto `MyStorageApplication.Api` temos o arquivo appsettings.Development.json, é dentro dele que esta definido o caminho do nosso arquivo de banco de dados, só precisamos colocar o arquivo de banco de dados do sqlite baixado ou criado no path que esta no appsettings.Development.json, veja abaixo o exemplo da ConnectionStrings:
+No Visual Studio no projeto `MyStorageApplication.Api` temos o arquivo appsettings.Development.json, é dentro dele que está definido o caminho do nosso arquivo de banco de dados, só precisamos colocar o arquivo de banco de dados do sqlite baixado ou criado no path que está no appsettings.Development.json, veja abaixo o exemplo da ConnectionStrings:
 ```json
 {
   "Logging": {
@@ -32,4 +32,24 @@ No Visual Studio no projeto `MyStorageApplication.Api` temos o arquivo appsettin
 }
 ```
 
-Feito isso compile e execute o projeto da API e nevegue para `https://localhost:[porta]/swagger/index.html` e veja os métodos listados no Swagger.
+Feito isso compile e execute o projeto da API e navegue para `https://localhost:[porta]/swagger/index.html` e veja os métodos listados no Swagger.
+
+# Considerações sobre as funcionalidades
+
+O projeto consiste de dois módulos principais onde estão agrupadas as funcionalidades, os módulos são:
+
+## Produto
+
+Permite cadastrar, alterar, consultar e apagar um produto via chamadas na API.
+
+## Gerenciamento de estoque
+
+Permite cadastrar e alterar estoques, permite efetuar movimentações e consultar o historico das movimentações efetuadas.
+
+## Considerações tecnicas e de arquitetura
+
+O projeto usa injeção de dependência para facilitar testes e manutenção do sistema, sendo que o sistema é dividido em três principais partes:
+- Controlador que processa uma requisição HTTP e delega para o serviço.
+- Serviço é onde o processamento dos dados são feitos, exemplo: `IStorageManagerServiceDomain` no qual possui toda a lógica de domínio da aplicação e se comunica com o banco de dados via repositório.
+- Repositórios são divididos em leitura e escrita e tem a única responsabilidade de acessar o banco de dados via Dapper.
+
