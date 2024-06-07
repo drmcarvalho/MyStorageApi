@@ -4,6 +4,15 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 .vs/
+src/MyStorageApplication.Api/.vs/
+src/MyStorageApplication.Api/bin/Debug/
+src/MyStorageApplication.Api/obj/Debug/
+src/MyStorageApplication.Database/bin/Debug/
+src/MyStorageApplication.Database/obj/Debug/
+src/MyStorageApplication.MangerStorage.Domain/bin/Debug/
+src/MyStorageApplication.MangerStorage.Domain/obj/Debug/
+src/MyStorageApplication.ProductManager.Domain/bin/Debug/
+src/MyStorageApplication.ProductManager.Domain/obj/Debug/
 
 # User-specific files
 *.rsuser
