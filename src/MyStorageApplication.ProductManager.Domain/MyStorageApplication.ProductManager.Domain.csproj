@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="RulesValidators\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\MyStorageApplication.Database\MyStorageApplication.Database.csproj" />
   </ItemGroup>
 
 </Project>

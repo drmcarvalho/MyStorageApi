@@ -1,4 +1,4 @@
-﻿namespace MyStorageApplication.StorageManager.Domain.Services
+﻿namespace MyStorageApplication.ProductManager.Domain.Services
 {
     public class ValidationResult
     {
