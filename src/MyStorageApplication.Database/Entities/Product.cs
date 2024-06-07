@@ -16,11 +16,10 @@
             Price = price;
         }
 
-        public void Update(int productId, string name, int stockBalance, decimal price)
+        public void Update(int productId, string name, decimal price)
         {
             ProductId = productId;
-            Name = name;
-            StockBalance = stockBalance;
+            Name = name;            
             Price = price;
         }
     }
