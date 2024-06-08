@@ -53,5 +53,18 @@ namespace MyStorageApplication.ProductManager.Domain.Services
 
         public async Task<ProductDto?> GetByIdAsync(int id)
             => await _productReadOnlyRepository.GetByIdAsync(id);
+
+        public async Task<ValidationResult> DeleteByIdAsync(int id)
+        {
+            var product = await _productReadOnlyRepository.GetByIdAsync(id);
+            if (product is null)
+            {
+                ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_NOT_FOUND, "Produto"));
+            }
+
+            await _productWriteOnlyRepository.DeleteAsync(id);
+
+            return ValidationResult;
+        }
     }
 }

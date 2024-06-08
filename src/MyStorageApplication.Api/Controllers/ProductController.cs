@@ -3,8 +3,6 @@ using MyStorageApplication.Database.Dtos;
 using MyStorageApplication.ProductManager.Domain.Dtos;
 using MyStorageApplication.ProductManager.Domain.Helpers;
 using MyStorageApplication.ProductManager.Domain.Services.Interfaces;
-using MyStorageApplication.StorageManager.Domain.Dtos;
-using MyStorageApplication.StorageManager.Domain.Services.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace MyStorageApplication.Api.Controllers
@@ -36,7 +34,7 @@ namespace MyStorageApplication.Api.Controllers
 
         [SwaggerOperation(Summary = "Cadastrar um produto novo")]
         [HttpPost("Product/Create")]
-        public async Task<IActionResult> CreateStorage([FromServices] IProductManagerServiceDomain service, [FromBody] CreateProductDto createProductDto)
+        public async Task<IActionResult> CreateProduct([FromServices] IProductManagerServiceDomain service, [FromBody] CreateProductDto createProductDto)
         {
             var result = await service.CreateAsync(createProductDto);
             if (!result.IsSuccess)
@@ -49,9 +47,22 @@ namespace MyStorageApplication.Api.Controllers
 
         [SwaggerOperation(Summary = "Atualiza um produto cadastrado pelo id especificado")]
         [HttpPut("Product/Update")]
-        public async Task<IActionResult> UpdateStorage([FromServices] IProductManagerServiceDomain service, [FromBody] UpdateProductDto updateProductDto)
+        public async Task<IActionResult> UpdateProduct([FromServices] IProductManagerServiceDomain service, [FromBody] UpdateProductDto updateProductDto)
         {
             var result = await service.UpdateAsync(updateProductDto);
+            if (!result.IsSuccess)
+            {
+                return BadRequest(WithMessages(result.ValidationMessageResult));
+            }
+
+            return NoContent();
+        }
+
+        [SwaggerOperation(Summary = "Exclui um produto cadastrado pelo id especificado")]
+        [HttpDelete("Product/Delete/{id}")]
+        public async Task<IActionResult> DeleteProduct([FromServices] IProductManagerServiceDomain service, int id)
+        {
+            var result = await service.DeleteByIdAsync(id);
             if (!result.IsSuccess)
             {
                 return BadRequest(WithMessages(result.ValidationMessageResult));

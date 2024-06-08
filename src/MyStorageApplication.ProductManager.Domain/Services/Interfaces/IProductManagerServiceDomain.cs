@@ -9,5 +9,6 @@ namespace MyStorageApplication.ProductManager.Domain.Services.Interfaces
         Task<IEnumerable<ProductDto>> GetAllAsync();
         Task<ValidationResult> CreateAsync(CreateProductDto createProductDto);
         Task<ValidationResult> UpdateAsync(UpdateProductDto updateProductDto);
+        Task<ValidationResult> DeleteByIdAsync(int id);
     }
 }
