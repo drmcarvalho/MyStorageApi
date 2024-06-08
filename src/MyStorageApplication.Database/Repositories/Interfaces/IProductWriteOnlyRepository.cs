@@ -7,5 +7,6 @@ namespace MyStorageApplication.Database.Repositories.Interfaces
         Task InsertAsync(Product product);
         Task UpdateAsync(Product product);
         Task UpdateStokBalanceAsync(int newStokBalanceAmount, int productId);
+        Task DeleteAsync(int productId);
     }
 }

@@ -13,26 +13,26 @@ namespace MyStorageApplication.Database.Repositories
             => await _session
                 .Connection.QueryAsync<HistoryMovementDto>(@"
                     SELECT 
-	                    M.MovimentId,
+	                    M.MovementId,
 	                    M.ProductName AS ""ProductName"", 
 	                    S.Identification AS ""StorageName"",
 	                    M.Amount,
 	                    M.""Type""
-                    FROM Moviments M
-                    INNER JOIN Products P ON P.ProductId = M.MovimentId
+                    FROM Movements M
+                    INNER JOIN Products P ON P.ProductId = M.MovementId
                     INNER JOIN Storage S ON S.StorageId = M.StorageId");
 
         public async Task<IEnumerable<HistoryMovementDto>> QueryAsync(string q)
             => await _session
                 .Connection.QueryAsync<HistoryMovementDto>(@"
                     SELECT 
-	                    M.MovimentId,
+	                    M.MovementId,
 	                    M.ProductName AS ""ProductName"", 
 	                    S.Identification AS ""StorageName"",
 	                    M.Amount,
 	                    M.""Type""
-                    FROM Moviments M
-                    INNER JOIN Products P ON P.ProductId = M.MovimentId
+                    FROM Movements M
+                    INNER JOIN Products P ON P.ProductId = M.MovementId
                     INNER JOIN Storage S ON S.StorageId = M.StorageId
                     WHERE (M.ProductName LIKE @WhereLike OR S.Identification LIKE @WhereLike)", new { WhereLike = q });
     }

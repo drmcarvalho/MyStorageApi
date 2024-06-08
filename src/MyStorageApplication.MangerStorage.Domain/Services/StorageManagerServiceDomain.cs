@@ -76,6 +76,8 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                 return ValidationResult;
             }
 
+            var typeMovement = registerMovementInStorageDto.Type;
+
             var storageDto = await _storageReadOnlyRepository.GetByIdAsync(registerMovementInStorageDto.StorageId);
             
             var productDto = await _productReadOnlyRepository.GetByIdAsync(registerMovementInStorageDto.ProductId);
@@ -88,11 +90,14 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             if (productDto is null)
             {
                 ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_NOT_FOUND, "Produto"));                
-            }                                  
+            }
 
-            if (registerMovementInStorageDto.Amount > productDto?.StockBalance)
+            if (typeMovement.Equals("S"))
             {
-                ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_INSUFFICIENT_STOCK_BALANCE));
+                if (registerMovementInStorageDto.Amount > productDto?.StockBalance)
+                {
+                    ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_INSUFFICIENT_STOCK_BALANCE));
+                }
             }
 
             if (!ValidationResult.IsSuccess)
@@ -102,33 +107,53 @@ namespace MyStorageApplication.StorageManager.Domain.Services
 
             _unitOfWork.BeginTransaction(); 
             {
-                var registerNewMovementation = new Movement(
-                    registerMovementInStorageDto.Amount,
-                    registerMovementInStorageDto.ProductId,
-                    registerMovementInStorageDto.StorageId,
-                    registerMovementInStorageDto.Type, productDto!.ProductName);
-
-                var typeMovement = registerMovementInStorageDto.Type;
-
-                var balanceProductStorageDto = await _balanceProductStorageReadOnlyRepository.GetByIdAsync(productDto.ProductId, storageDto!.StorageId);
-                if (balanceProductStorageDto is null)
+                try
                 {
-                    await _balanceProductStorageWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovementInStorageDto.Amount));
+                    var registerNewMovementation = new Movement(
+                        registerMovementInStorageDto.Amount,
+                        registerMovementInStorageDto.ProductId,
+                        registerMovementInStorageDto.StorageId,
+                        registerMovementInStorageDto.Type, productDto!.ProductName);
+
+                    var balanceProductStorageDto = await _balanceProductStorageReadOnlyRepository.GetByIdAsync(productDto.ProductId, storageDto!.StorageId);
+                    if (balanceProductStorageDto is null)
+                    {
+                        await _balanceProductStorageWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovementInStorageDto.Amount));
+                    }
+                    else
+                    {
+                        balanceProductStorageDto.Balance = CalculateStockBalance(typeMovement, balanceProductStorageDto.Balance, registerMovementInStorageDto.Amount);
+                        await _balanceProductStorageWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto);
+                    }
+
+                    var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovementInStorageDto.Amount);
+
+                    await _productWriteOnlyRepository.UpdateStokBalanceAsync(stockBalanceCalculated, productDto.ProductId);
+
+                    await _movementsWriteOnlyRepository.InsertAsync(registerNewMovementation);
+
+                    _unitOfWork.Commit();
                 }
-                else
+                catch (Exception ex)
                 {
-                    balanceProductStorageDto.Balance = CalculateStockBalance(typeMovement, balanceProductStorageDto.Balance, registerMovementInStorageDto.Amount);                    
-                    await _balanceProductStorageWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto);
+                    Console.WriteLine($"Commit exception type: {ex.GetType()}");
+                    Console.WriteLine($"\nMessage: {ex.Message}");
+
+                    ValidationResult.AddMessageResult("Commit fail");
+
+                    try
+                    {
+                        _unitOfWork.Rollback();
+                    }
+                    catch (Exception ex2) 
+                    {
+                        Console.WriteLine($"Rollback exception type: {ex2.GetType()}");
+                        Console.WriteLine($"\nMessage: {ex2.Message}");
+
+                        ValidationResult.AddMessageResult("Rollback");
+                    }
                 }
-
-                var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovementInStorageDto.Amount);                
-
-                await _productWriteOnlyRepository.UpdateStokBalanceAsync(stockBalanceCalculated, productDto.ProductId);
-
-                await _movementsWriteOnlyRepository.InsertAsync(registerNewMovementation);
-            }
-
-            _unitOfWork.Commit();
+            }            
 
             return ValidationResult;
         }

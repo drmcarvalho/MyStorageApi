@@ -8,6 +8,7 @@
         public string Name { get; private set; } = string.Empty;
         public int StockBalance { get; private set; } = 0;
         public decimal Price { get; private set; }
+        public int Deleted { get; private set; } = 0;
 
         public Product(string name, decimal price)
         {
