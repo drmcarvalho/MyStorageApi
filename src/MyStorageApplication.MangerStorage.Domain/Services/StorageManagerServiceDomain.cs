@@ -165,7 +165,14 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             => await _storageReadOnlyRepository.GetByIdAsync(id);
 
         public async Task<IEnumerable<HistoryMovementDto>> GetAllHistoryMovimentsAsync()
-            => await _movementsReadOnlyRepository.GetAllAsync();        
+        { 
+            var historyList = await _movementsReadOnlyRepository.GetAllAsync();
+            foreach (var historyMovementDto in historyList)
+            {
+                historyMovementDto.Type = historyMovementDto.Type.Equals("E") ? "Entrada" : "Saída";
+            }
+            return historyList;
+        }
 
         private static int CalculateStockBalance(string type, int currentAmount, int newAmount)
         {
