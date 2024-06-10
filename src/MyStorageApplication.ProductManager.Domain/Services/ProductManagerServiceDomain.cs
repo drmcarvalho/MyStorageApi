@@ -7,10 +7,11 @@ using MyStorageApplication.ProductManager.Domain.Services.Interfaces;
 
 namespace MyStorageApplication.ProductManager.Domain.Services
 {
-    public class ProductManagerServiceDomain(IProductReadOnlyRepository productReadOnlyRepository, IProductWriteOnlyRepository productWriteOnlyRepository): ServiceValidationRule, IProductManagerServiceDomain
+    public class ProductManagerServiceDomain(IProductReadOnlyRepository productReadOnlyRepository, IProductWriteOnlyRepository productWriteOnlyRepository, IBalanceProductStorageReadOnlyRepository balanceProductStorageReadOnlyRepository): ServiceValidationRule, IProductManagerServiceDomain
     {
         private readonly IProductWriteOnlyRepository _productWriteOnlyRepository = productWriteOnlyRepository;
         private readonly IProductReadOnlyRepository _productReadOnlyRepository = productReadOnlyRepository;
+        private readonly IBalanceProductStorageReadOnlyRepository _balanceProductStorageReadOnlyRepository = balanceProductStorageReadOnlyRepository;
 
         public async Task<ValidationResult> CreateAsync(CreateProductDto createProductDto)
         {
@@ -49,7 +50,19 @@ namespace MyStorageApplication.ProductManager.Domain.Services
         }
 
         public async Task<IEnumerable<ProductDto>> GetAllAsync()
-            => await _productReadOnlyRepository.GetAllAsync();
+        { 
+            var productsDto = await _productReadOnlyRepository.GetAllAsync(); 
+            foreach (var product in productsDto)
+            {
+                var query = await _balanceProductStorageReadOnlyRepository.GetBalanceStoragesByProduct(product.ProductId);
+                if (query.Any())
+                {
+                    product.Storages = string.Join(",", query.ToList());
+                }                
+            }
+
+            return productsDto;
+        }
 
         public async Task<ProductDto?> GetByIdAsync(int id)
             => await _productReadOnlyRepository.GetByIdAsync(id);

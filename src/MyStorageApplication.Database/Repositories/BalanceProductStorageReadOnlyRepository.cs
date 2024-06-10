@@ -9,6 +9,15 @@ namespace MyStorageApplication.Database.Repositories
     {
         private readonly DatabaseSession _session = session;
 
+        public async Task<IEnumerable<string>> GetBalanceStoragesByProduct(int productId)
+            => await _session
+                .Connection.QueryAsync<string>(@"
+                    SELECT S.Identification
+                    FROM Products P
+                    INNER JOIN BalanceProductStorage BPS ON BPS.ProductId = P.ProductId
+                    INNER JOIN Storage S ON S.StorageId = BPS.StorageId
+                    WHERE BPS.ProductId = @ProductId", new { ProductId = productId });
+
         public async Task<BalanceProductStorageDto?> GetByIdAsync(int productId, int storageId)
             => await _session
                 .Connection.QueryFirstOrDefaultAsync<BalanceProductStorageDto>(@"

@@ -13,7 +13,7 @@ namespace MyStorageApplication.Api.Controllers
     public class ProductController : ControllerBase
     {
         [SwaggerOperation(Summary = "Busca um produto pelo id unico especificado")]
-        [HttpGet("Product/Get/{id}")]
+        [HttpGet("Get/{id}")]
         [ProducesResponseType<ProductDto>(200)]
         public async Task<IActionResult> GetById([FromServices] IProductManagerServiceDomain service, int id)
         {
@@ -27,13 +27,13 @@ namespace MyStorageApplication.Api.Controllers
         }
 
         [SwaggerOperation(Summary = "Lista todos os produtos cadastrados")]
-        [HttpGet("Product/GetAll")]
+        [HttpGet("GetAll")]
         [ProducesResponseType<IEnumerable<ProductDto>>(200)]
         public async Task<IActionResult> GetAll([FromServices] IProductManagerServiceDomain service)
             => Ok(await service.GetAllAsync());
 
         [SwaggerOperation(Summary = "Cadastrar um produto novo")]
-        [HttpPost("Product/Create")]
+        [HttpPost("Create")]
         public async Task<IActionResult> CreateProduct([FromServices] IProductManagerServiceDomain service, [FromBody] CreateProductDto createProductDto)
         {
             var result = await service.CreateAsync(createProductDto);
@@ -46,7 +46,7 @@ namespace MyStorageApplication.Api.Controllers
         }
 
         [SwaggerOperation(Summary = "Atualiza um produto cadastrado pelo id especificado")]
-        [HttpPut("Product/Update")]
+        [HttpPut("Update")]
         public async Task<IActionResult> UpdateProduct([FromServices] IProductManagerServiceDomain service, [FromBody] UpdateProductDto updateProductDto)
         {
             var result = await service.UpdateAsync(updateProductDto);
@@ -59,7 +59,7 @@ namespace MyStorageApplication.Api.Controllers
         }
 
         [SwaggerOperation(Summary = "Exclui um produto cadastrado pelo id especificado")]
-        [HttpDelete("Product/Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteProduct([FromServices] IProductManagerServiceDomain service, int id)
         {
             var result = await service.DeleteByIdAsync(id);

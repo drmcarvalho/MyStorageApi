@@ -6,5 +6,6 @@
         public string ProductName { get; set; } = string.Empty;
         public int StockBalance { get; set; }
         public decimal Price { get; set; }
+        public string Storages { get; set; } = string.Empty;
     }
 }
