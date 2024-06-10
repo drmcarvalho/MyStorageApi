@@ -25,8 +25,8 @@ namespace MyStorageApplication.StorageManager.Domain.Services
         private readonly IMovementsWriteOnlyRepository _movementsWriteOnlyRepository = movementsWriteOnlyRepository;
         private readonly IProductReadOnlyRepository _productReadOnlyRepository = productReadOnlyRepository;
         private readonly IProductWriteOnlyRepository _productWriteOnlyRepository = productWriteOnlyRepository;
-        private readonly IBalanceProductStorageReadOnlyRepository _balanceProductStorageReadOnlyRepository = balanceProductStorageReadOnlyRepository;
-        private readonly IBalanceProductStorageWriteOnlyRepository _balanceProductStorageWriteOnlyRepository = balanceProductStorageWriteOnlyRepository;
+        private readonly IBalanceProductStorageReadOnlyRepository _balanceReadOnlyRepository = balanceProductStorageReadOnlyRepository;
+        private readonly IBalanceProductStorageWriteOnlyRepository _balanceWriteOnlyRepository = balanceProductStorageWriteOnlyRepository;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task<ValidationResult> CreateStorageAsync(CreateStorageDto createStorageDto)
@@ -115,15 +115,15 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                         registerMovementInStorageDto.StorageId,
                         registerMovementInStorageDto.Type, productDto!.ProductName);
 
-                    var balanceProductStorageDto = await _balanceProductStorageReadOnlyRepository.GetByIdAsync(productDto.ProductId, storageDto!.StorageId);
+                    var balanceProductStorageDto = await _balanceReadOnlyRepository.GetByIdAsync(productDto.ProductId, storageDto!.StorageId);
                     if (balanceProductStorageDto is null)
                     {
-                        await _balanceProductStorageWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovementInStorageDto.Amount));
+                        await _balanceWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovementInStorageDto.Amount));
                     }
                     else
                     {
                         balanceProductStorageDto.Balance = CalculateStockBalance(typeMovement, balanceProductStorageDto.Balance, registerMovementInStorageDto.Amount);
-                        await _balanceProductStorageWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto);
+                        await _balanceWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto);
                     }
 
                     var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovementInStorageDto.Amount);
