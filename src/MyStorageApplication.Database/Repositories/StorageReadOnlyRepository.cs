@@ -17,5 +17,9 @@ namespace MyStorageApplication.Database.Repositories
             => await _session
                 .Connection.QueryFirstOrDefaultAsync<StorageDto>("SELECT StorageId, Identification FROM Storage WHERE StorageId = @StorageId", 
                     new { StorageId = id });
+
+        public async Task<IEnumerable<StorageDto>> QueryAsync(string query)
+            => await _session
+                .Connection.QueryAsync<StorageDto>(@"SELECT StorageId, Identification FROM Storage WHERE Identification LIKE @WhereLike", new { WhereLike = $"%{query}%" });
     }
 }

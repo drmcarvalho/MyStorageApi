@@ -77,6 +77,12 @@ namespace MyStorageApplication.Api.Controllers
         public async Task<IActionResult> GetAllHistoryMovements([FromServices] IStorageManagerServiceDomain service)
             => Ok(await service.GetAllHistoryMovimentsAsync());
 
+        [SwaggerOperation(Summary = "Pesquisa por um determinado estoque usando o campo identificação como critério")]
+        [HttpGet("Storage/Query")]
+        [ProducesResponseType<IEnumerable<StorageDto>>(200)]
+        public async Task<IActionResult> StorageQuery([FromServices] IStorageManagerServiceDomain service, [FromQuery] string q)
+            => Ok(await service.QueryStorage(q));
+
         private object WithMessages(List<string> messages) => new { messages };
 
         private object WithMessage(string  message) => new { message };

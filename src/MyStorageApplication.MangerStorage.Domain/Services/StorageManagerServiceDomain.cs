@@ -201,5 +201,8 @@ namespace MyStorageApplication.StorageManager.Domain.Services
 
             return currentAmount;
         }
+
+        public async Task<IEnumerable<StorageDto>> QueryStorage(string query)
+            => await _storageReadOnlyRepository.QueryAsync(query); 
     }
 }

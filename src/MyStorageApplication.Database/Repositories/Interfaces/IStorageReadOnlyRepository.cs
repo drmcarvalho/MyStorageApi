@@ -6,5 +6,6 @@ namespace MyStorageApplication.Database.Repositories.Interfaces
     {
         Task<IEnumerable<StorageDto>> GetAllAsync();
         Task<StorageDto?> GetByIdAsync(int id);
+        Task<IEnumerable<StorageDto>> QueryAsync(string query);
     }
 }
