@@ -65,22 +65,22 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             return ValidationResult;
         }
 
-        public async Task<ValidationResult> RegisterMovementInStorage(RegisterMovementInStorageDto registerMovementInStorageDto)
+        public async Task<ValidationResult> RegisterMovementInStorage(RegisterMovementInStorageDto registerMovemenDto)
         {
-            CheckRuleForEmptyField(registerMovementInStorageDto, nameof(registerMovementInStorageDto.Type));
-            CheckRuleForNumberIsZero(registerMovementInStorageDto, nameof(registerMovementInStorageDto.Amount));
-            CheckRuleForTypeMovement(registerMovementInStorageDto.Type);
+            CheckRuleForEmptyField(registerMovemenDto, nameof(registerMovemenDto.Type));
+            CheckRuleForNumberIsZero(registerMovemenDto, nameof(registerMovemenDto.Amount));
+            CheckRuleForTypeMovement(registerMovemenDto.Type);
 
             if (!ValidationResult.IsSuccess)
             {
                 return ValidationResult;
             }
 
-            var typeMovement = registerMovementInStorageDto.Type;
+            var typeMovement = registerMovemenDto.Type;
 
-            var storageDto = await _storageReadOnlyRepository.GetByIdAsync(registerMovementInStorageDto.StorageId);
+            var storageDto = await _storageReadOnlyRepository.GetByIdAsync(registerMovemenDto.StorageId);
             
-            var productDto = await _productReadOnlyRepository.GetByIdAsync(registerMovementInStorageDto.ProductId);
+            var productDto = await _productReadOnlyRepository.GetByIdAsync(registerMovemenDto.ProductId);
 
             if (storageDto is null)
             {
@@ -94,7 +94,7 @@ namespace MyStorageApplication.StorageManager.Domain.Services
 
             if (typeMovement.Equals("S"))
             {
-                if (registerMovementInStorageDto.Amount > productDto?.StockBalance)
+                if (registerMovemenDto.Amount > productDto?.StockBalance)
                 {
                     ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_INSUFFICIENT_STOCK_BALANCE));
                 }
@@ -110,23 +110,23 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                 try
                 {
                     var registerNewMovementation = new Movement(
-                        registerMovementInStorageDto.Amount,
-                        registerMovementInStorageDto.ProductId,
-                        registerMovementInStorageDto.StorageId,
-                        registerMovementInStorageDto.Type, productDto!.ProductName);
+                        registerMovemenDto.Amount,
+                        registerMovemenDto.ProductId,
+                        registerMovemenDto.StorageId,
+                        registerMovemenDto.Type, productDto!.ProductName);
 
                     var balanceProductStorageDto = await _balanceReadOnlyRepository.GetByIdAsync(productDto.ProductId, storageDto!.StorageId);
                     if (balanceProductStorageDto is null)
                     {
-                        await _balanceWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovementInStorageDto.Amount));
+                        await _balanceWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovemenDto.Amount));
                     }
                     else
                     {
-                        balanceProductStorageDto.Balance = CalculateStockBalance(typeMovement, balanceProductStorageDto.Balance, registerMovementInStorageDto.Amount);
+                        balanceProductStorageDto.Balance = CalculateStockBalance(typeMovement, balanceProductStorageDto.Balance, registerMovemenDto.Amount);
                         await _balanceWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto);
                     }
 
-                    var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovementInStorageDto.Amount);
+                    var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovemenDto.Amount);
 
                     await _productWriteOnlyRepository.UpdateStokBalanceAsync(stockBalanceCalculated, productDto.ProductId);
 
