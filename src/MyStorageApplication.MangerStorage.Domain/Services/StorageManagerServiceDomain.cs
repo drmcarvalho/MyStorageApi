@@ -92,6 +92,11 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                 ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_NOT_FOUND, "Produto"));                
             }
 
+            if (!ValidationResult.IsSuccess)
+            {
+                return ValidationResult;
+            }
+
             if (typeMovement.Equals("S"))
             {
                 if (registerMovemenDto.Amount > productDto?.StockBalance)
@@ -99,7 +104,7 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                     ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_INSUFFICIENT_STOCK_BALANCE));
                 }
             }
-
+            
             var balanceProductStorageDto = await _balanceReadOnlyRepository.GetByIdAsync(registerMovemenDto.ProductId, storageDto!.StorageId);
             if (typeMovement.Equals("S") && balanceProductStorageDto is not null)
             {
