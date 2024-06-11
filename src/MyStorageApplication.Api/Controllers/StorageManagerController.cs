@@ -32,6 +32,12 @@ namespace MyStorageApplication.Api.Controllers
         public async Task<IActionResult> GetAll([FromServices] IStorageManagerServiceDomain service) 
             => Ok(await service.GetAllAsync());
 
+        [SwaggerOperation(Summary = "Pesquisa por um determinado estoque usando o campo identificação como critério")]
+        [HttpGet("Storage/Query")]
+        [ProducesResponseType<IEnumerable<StorageDto>>(200)]
+        public async Task<IActionResult> StorageQuery([FromServices] IStorageManagerServiceDomain service, [FromQuery] string q)
+            => Ok(await service.QueryStorage(q));
+
         [SwaggerOperation(Summary = "Cadastrar um estoque novo")]
         [HttpPost("Storage/Create")]
         public async Task<IActionResult> CreateStorage([FromServices] IStorageManagerServiceDomain service, [FromBody] CreateStorageDto createStorageDto)
@@ -75,13 +81,7 @@ namespace MyStorageApplication.Api.Controllers
         [HttpGet("Movement/GetAllHistoryMovements")]
         [ProducesResponseType<IEnumerable<HistoryMovementDto>>(200)]
         public async Task<IActionResult> GetAllHistoryMovements([FromServices] IStorageManagerServiceDomain service)
-            => Ok(await service.GetAllHistoryMovimentsAsync());
-
-        [SwaggerOperation(Summary = "Pesquisa por um determinado estoque usando o campo identificação como critério")]
-        [HttpGet("Storage/Query")]
-        [ProducesResponseType<IEnumerable<StorageDto>>(200)]
-        public async Task<IActionResult> StorageQuery([FromServices] IStorageManagerServiceDomain service, [FromQuery] string q)
-            => Ok(await service.QueryStorage(q));
+            => Ok(await service.GetAllHistoryMovimentsAsync());        
 
         private object WithMessages(List<string> messages) => new { messages };
 

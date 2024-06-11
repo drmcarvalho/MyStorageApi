@@ -178,6 +178,9 @@ namespace MyStorageApplication.StorageManager.Domain.Services
         public async Task<StorageDto?> GetByIdAsync(int id)         
             => await _storageReadOnlyRepository.GetByIdAsync(id);
 
+        public async Task<IEnumerable<StorageDto>> QueryStorage(string query)
+            => await _storageReadOnlyRepository.QueryAsync(query);
+
         public async Task<IEnumerable<HistoryMovementDto>> GetAllHistoryMovimentsAsync()
         { 
             var historyList = await _movementsReadOnlyRepository.GetAllAsync();
@@ -201,8 +204,5 @@ namespace MyStorageApplication.StorageManager.Domain.Services
 
             return currentAmount;
         }
-
-        public async Task<IEnumerable<StorageDto>> QueryStorage(string query)
-            => await _storageReadOnlyRepository.QueryAsync(query); 
     }
 }
