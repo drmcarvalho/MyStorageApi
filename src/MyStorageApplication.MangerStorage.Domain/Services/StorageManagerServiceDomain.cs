@@ -100,6 +100,15 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                 }
             }
 
+            var balanceProductStorageDto = await _balanceReadOnlyRepository.GetByIdAsync(registerMovemenDto.ProductId, storageDto!.StorageId);
+            if (typeMovement.Equals("S") && balanceProductStorageDto is not null)
+            {
+                if (registerMovemenDto.Amount > balanceProductStorageDto.Balance)
+                {
+                    ValidationResult.AddMessageResult(string.Format(MessagesHelper.MESSAGE_INSUFFICIENT_STOCK_BALANCE_SELECTED));
+                }
+            }
+
             if (!ValidationResult.IsSuccess)
             {
                 return ValidationResult;
@@ -115,15 +124,15 @@ namespace MyStorageApplication.StorageManager.Domain.Services
                         registerMovemenDto.StorageId,
                         registerMovemenDto.Type, productDto!.ProductName);
 
-                    var balanceProductStorageDto = await _balanceReadOnlyRepository.GetByIdAsync(productDto.ProductId, storageDto!.StorageId);
+                    
                     if (balanceProductStorageDto is null)
                     {
                         await _balanceWriteOnlyRepository.InsertAsync(new BalanceProductStorage(productDto.ProductId, storageDto.StorageId, registerMovemenDto.Amount));
                     }
                     else
-                    {
+                    {                        
                         balanceProductStorageDto.Balance = CalculateStockBalance(typeMovement, balanceProductStorageDto.Balance, registerMovemenDto.Amount);
-                        await _balanceWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto);
+                        await _balanceWriteOnlyRepository.UpdateBalanceAsync(balanceProductStorageDto); 
                     }
 
                     var stockBalanceCalculated = CalculateStockBalance(typeMovement, productDto.StockBalance, registerMovemenDto.Amount);
