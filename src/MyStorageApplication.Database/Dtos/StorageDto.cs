@@ -4,5 +4,6 @@
     {
         public int StorageId {  get; set; }
         public string? Identification { get; set; }
+        public int BalanceTotal { get; set; } = 0;
     }
 }

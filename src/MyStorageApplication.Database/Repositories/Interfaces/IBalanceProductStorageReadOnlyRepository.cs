@@ -6,5 +6,6 @@ namespace MyStorageApplication.Database.Repositories.Interfaces
     {        
         Task<BalanceProductStorageDto?> GetByIdAsync(int productId, int storageId);
         Task<IEnumerable<string>> GetBalanceStoragesByProduct(int productId);
+        Task<int?> SumBalanceByStorage(int storageId);
     }
 }

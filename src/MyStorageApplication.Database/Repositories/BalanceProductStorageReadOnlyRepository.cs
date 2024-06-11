@@ -24,5 +24,9 @@ namespace MyStorageApplication.Database.Repositories
                     SELECT B.BalanceProductStorageId, B.ProductId, B.StorageId, B.Balance 
                     FROM BalanceProductStorage B
                     WHERE B.ProductId = @ProductId AND B.StorageId = @StorageId", new { ProductId = productId, StorageId = storageId });
+
+        public async Task<int?> SumBalanceByStorage(int storageId)
+            => await _session
+                .Connection.QueryFirstOrDefaultAsync<int?>(@"SELECT SUM(Balance) FROM BalanceProductStorage WHERE StorageId = @StorageId", new { StorageId = storageId });
     }
 }

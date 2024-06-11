@@ -173,7 +173,18 @@ namespace MyStorageApplication.StorageManager.Domain.Services
         }
 
         public async Task<IEnumerable<StorageDto>> GetAllAsync()
-            => await _storageReadOnlyRepository.GetAllAsync();
+        { 
+            var storages = await _storageReadOnlyRepository.GetAllAsync();
+            foreach (var storageDto in storages)
+            {
+                var total = await _balanceReadOnlyRepository.SumBalanceByStorage(storageDto.StorageId);
+                if (total is not null && total > 0)
+                {
+                    storageDto.BalanceTotal = total.Value;
+                }
+            }
+            return storages;
+        }
 
         public async Task<StorageDto?> GetByIdAsync(int id)         
             => await _storageReadOnlyRepository.GetByIdAsync(id);
