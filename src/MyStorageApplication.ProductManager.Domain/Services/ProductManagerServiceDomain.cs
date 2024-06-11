@@ -54,10 +54,10 @@ namespace MyStorageApplication.ProductManager.Domain.Services
             var productsDto = await _productReadOnlyRepository.GetAllAsync(); 
             foreach (var product in productsDto)
             {
-                var query = await _balanceProductStorageReadOnlyRepository.GetBalanceStoragesByProduct(product.ProductId);
-                if (query.Any())
+                var storages = await _balanceProductStorageReadOnlyRepository.GetBalanceStoragesByProduct(product.ProductId);
+                if (storages.Any())
                 {
-                    product.Storages = string.Join(",", query.ToList());
+                    product.Storages = string.Join(",", storages.ToList());
                 }                
             }
 
