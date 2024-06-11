@@ -17,7 +17,8 @@ namespace MyStorageApplication.Database.Repositories
 	                    M.ProductName AS ""ProductName"", 
 	                    S.Identification AS ""StorageName"",
 	                    M.Amount,
-	                    M.""Type""
+	                    M.""Type"",
+                        M.CreatedAt AS ""MovementDate""
                     FROM Movements M
                     INNER JOIN Products P ON P.ProductId = M.MovementId
                     INNER JOIN Storage S ON S.StorageId = M.StorageId");

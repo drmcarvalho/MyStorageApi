@@ -16,7 +16,7 @@ namespace MyStorageApplication.Database.Repositories
                     FROM Products P
                     INNER JOIN BalanceProductStorage BPS ON BPS.ProductId = P.ProductId
                     INNER JOIN Storage S ON S.StorageId = BPS.StorageId
-                    WHERE BPS.ProductId = @ProductId", new { ProductId = productId });
+                    WHERE BPS.Balance > 0 AND BPS.ProductId = @ProductId", new { ProductId = productId });
 
         public async Task<BalanceProductStorageDto?> GetByIdAsync(int productId, int storageId)
             => await _session
