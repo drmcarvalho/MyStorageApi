@@ -174,23 +174,20 @@ namespace MyStorageApplication.StorageManager.Domain.Services
 
         public async Task<IEnumerable<StorageDto>> GetAllAsync()
         { 
-            var storages = await _storageReadOnlyRepository.GetAllAsync();
-            foreach (var storageDto in storages)
-            {
-                var total = await _balanceReadOnlyRepository.SumBalanceByStorage(storageDto.StorageId);
-                if (total is not null && total > 0)
-                {
-                    storageDto.BalanceTotal = total.Value;
-                }
-            }
+            var storages = await _storageReadOnlyRepository.GetAllAsync();            
+            await SumBalanceStorage(storages);
             return storages;
-        }
+        }        
 
         public async Task<StorageDto?> GetByIdAsync(int id)         
             => await _storageReadOnlyRepository.GetByIdAsync(id);
 
         public async Task<IEnumerable<StorageDto>> QueryStorage(string query)
-            => await _storageReadOnlyRepository.QueryAsync(query);
+        { 
+            var storages = await _storageReadOnlyRepository.QueryAsync(query); 
+            await SumBalanceStorage(storages);
+            return storages;
+        }
 
         public async Task<IEnumerable<HistoryMovementDto>> GetAllHistoryMovimentsAsync()
         { 
@@ -217,6 +214,23 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             }
 
             return currentAmount;
-        }        
+        }
+
+        private async Task SumBalanceStorage(IEnumerable<StorageDto> storages)
+        {
+            if (storages is null)
+            {
+                return;
+            }
+
+            foreach (var storageDto in storages)
+            {
+                var total = await _balanceReadOnlyRepository.SumBalanceByStorage(storageDto.StorageId);
+                if (total is not null && total > 0)
+                {
+                    storageDto.BalanceTotal = total.Value;
+                }
+            }
+        }
     }
 }

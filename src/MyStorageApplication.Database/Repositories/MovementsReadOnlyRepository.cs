@@ -20,7 +20,7 @@ namespace MyStorageApplication.Database.Repositories
 	                    M.""Type"",
                         M.CreatedAt AS ""MovementDate""
                     FROM Movements M
-                    INNER JOIN Products P ON P.ProductId = M.MovementId
+                    INNER JOIN Products P ON P.ProductId = M.ProductId
                     INNER JOIN Storage S ON S.StorageId = M.StorageId");
 
         public async Task<IEnumerable<HistoryMovementDto>> QueryAsync(string q)
@@ -33,7 +33,7 @@ namespace MyStorageApplication.Database.Repositories
 	                    M.Amount,
 	                    M.""Type""
                     FROM Movements M
-                    INNER JOIN Products P ON P.ProductId = M.MovementId
+                    INNER JOIN Products P ON P.ProductId = M.ProductId
                     INNER JOIN Storage S ON S.StorageId = M.StorageId
                     WHERE (M.ProductName LIKE @WhereLike OR S.Identification LIKE @WhereLike)", new { WhereLike = $"%{q}%" });
     }
