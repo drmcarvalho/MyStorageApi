@@ -28,6 +28,6 @@ namespace MyStorageApplication.Database.Repositories
 
         public async Task<IEnumerable<ProductDto>> QueryAsync(string q)
             => await _session
-                .Connection.QueryAsync<ProductDto>(@"SELECT ProductId, Name AS ""ProductName"", StockBalance, Price FROM Products WHERE Deleted = 0 AND Name LIKE @WhereLike", new { WhereLike = q });
+                .Connection.QueryAsync<ProductDto>(@"SELECT ProductId, Name AS ""ProductName"", StockBalance, Price FROM Products WHERE Deleted = 0 AND Name LIKE @WhereLike", new { WhereLike = $"%{q}%" });
     }
 }

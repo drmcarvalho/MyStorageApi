@@ -79,5 +79,8 @@ namespace MyStorageApplication.ProductManager.Domain.Services
 
             return ValidationResult;
         }
+
+        public async Task<IEnumerable<ProductDto>> QueryAsync(string query)
+            => await _productReadOnlyRepository.QueryAsync(query);
     }
 }

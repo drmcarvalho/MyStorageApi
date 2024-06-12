@@ -32,6 +32,12 @@ namespace MyStorageApplication.Api.Controllers
         public async Task<IActionResult> GetAll([FromServices] IProductManagerServiceDomain service)
             => Ok(await service.GetAllAsync());
 
+        [SwaggerOperation(Summary = "Pesquisar um produto pela descrição")]
+        [HttpGet("Query")]
+        [ProducesResponseType<IEnumerable<ProductDto>>(200)]
+        public async Task<IActionResult> Query([FromServices] IProductManagerServiceDomain service, [FromQuery] string q)
+            => Ok(await service.QueryAsync(q));
+
         [SwaggerOperation(Summary = "Cadastrar um produto novo")]
         [HttpPost("Create")]
         public async Task<IActionResult> CreateProduct([FromServices] IProductManagerServiceDomain service, [FromBody] CreateProductDto createProductDto)
