@@ -192,15 +192,16 @@ namespace MyStorageApplication.StorageManager.Domain.Services
         public async Task<IEnumerable<HistoryMovementDto>> GetAllHistoryMovimentsAsync()
         { 
             var historyList = await _movementsReadOnlyRepository.GetAllAsync();
-            foreach (var historyMovementDto in historyList)
-            {
-                historyMovementDto.Type = historyMovementDto.Type.Equals("E") ? "Entrada" : "Saída";
-            }
+            NormalizeTypeMovement(historyList);
             return historyList;
         }
 
         public async Task<IEnumerable<HistoryMovementDto>> QueryHistoryMovement(string query)
-            => await _movementsReadOnlyRepository.QueryAsync(query);
+        { 
+            var historyList = await _movementsReadOnlyRepository.QueryAsync(query); 
+            NormalizeTypeMovement(historyList);
+            return historyList;
+        }
 
         private static int CalculateStockBalance(string type, int currentAmount, int newAmount)
         {
@@ -216,13 +217,16 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             return currentAmount;
         }
 
-        private async Task SumBalanceStorage(IEnumerable<StorageDto> storages)
-        {
-            if (storages is null)
+        private void NormalizeTypeMovement(IEnumerable<HistoryMovementDto> movementDtos)
+        {            
+            foreach (var historyMovementDto in movementDtos)
             {
-                return;
+                historyMovementDto.Type = historyMovementDto.Type.Equals("E") ? "Entrada" : "Saída";
             }
+        }
 
+        private async Task SumBalanceStorage(IEnumerable<StorageDto> storages)
+        {            
             foreach (var storageDto in storages)
             {
                 var total = await _balanceReadOnlyRepository.SumBalanceByStorage(storageDto.StorageId);
