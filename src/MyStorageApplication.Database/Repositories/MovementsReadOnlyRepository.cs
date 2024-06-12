@@ -35,6 +35,6 @@ namespace MyStorageApplication.Database.Repositories
                     FROM Movements M
                     INNER JOIN Products P ON P.ProductId = M.MovementId
                     INNER JOIN Storage S ON S.StorageId = M.StorageId
-                    WHERE (M.ProductName LIKE @WhereLike OR S.Identification LIKE @WhereLike)", new { WhereLike = q });
+                    WHERE (M.ProductName LIKE @WhereLike OR S.Identification LIKE @WhereLike)", new { WhereLike = $"%{q}%" });
     }
 }

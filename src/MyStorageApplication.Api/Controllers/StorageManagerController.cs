@@ -30,7 +30,7 @@ namespace MyStorageApplication.Api.Controllers
         [HttpGet("Storage/GetAll")]
         [ProducesResponseType<IEnumerable<StorageDto>>(200)]
         public async Task<IActionResult> GetAll([FromServices] IStorageManagerServiceDomain service) 
-            => Ok(await service.GetAllAsync());
+            => Ok(await service.GetAllAsync());        
 
         [SwaggerOperation(Summary = "Pesquisa por um determinado estoque usando o campo identificação como critério")]
         [HttpGet("Storage/Query")]
@@ -81,7 +81,13 @@ namespace MyStorageApplication.Api.Controllers
         [HttpGet("Movement/GetAllHistoryMovements")]
         [ProducesResponseType<IEnumerable<HistoryMovementDto>>(200)]
         public async Task<IActionResult> GetAllHistoryMovements([FromServices] IStorageManagerServiceDomain service)
-            => Ok(await service.GetAllHistoryMovimentsAsync());        
+            => Ok(await service.GetAllHistoryMovimentsAsync());
+
+        [SwaggerOperation(Summary = "Pesquisar por uma determinada movimentação")]
+        [HttpGet("Movement/Query")]
+        [ProducesResponseType<IEnumerable<HistoryMovementDto>>(200)]
+        public async Task<IActionResult> QueryMovement([FromServices] IStorageManagerServiceDomain service, [FromQuery] string q)
+            => Ok(await service.QueryHistoryMovement(q));
 
         private object WithMessages(List<string> messages) => new { messages };
 

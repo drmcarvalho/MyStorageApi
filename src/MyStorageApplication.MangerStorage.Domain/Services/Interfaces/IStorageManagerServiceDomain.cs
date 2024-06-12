@@ -12,5 +12,6 @@ namespace MyStorageApplication.StorageManager.Domain.Services.Interfaces
         Task<IEnumerable<HistoryMovementDto>> GetAllHistoryMovimentsAsync();
         Task<ValidationResult> RegisterMovementInStorage(RegisterMovementInStorageDto registerMovementInStorageDto);
         Task<IEnumerable<StorageDto>> QueryStorage(string query);
+        Task<IEnumerable<HistoryMovementDto>> QueryHistoryMovement(string query);
     }
 }

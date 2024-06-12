@@ -202,6 +202,9 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             return historyList;
         }
 
+        public async Task<IEnumerable<HistoryMovementDto>> QueryHistoryMovement(string query)
+            => await _movementsReadOnlyRepository.QueryAsync(query);
+
         private static int CalculateStockBalance(string type, int currentAmount, int newAmount)
         {
             if (type.Equals("S"))
@@ -214,6 +217,6 @@ namespace MyStorageApplication.StorageManager.Domain.Services
             }
 
             return currentAmount;
-        }
+        }        
     }
 }
